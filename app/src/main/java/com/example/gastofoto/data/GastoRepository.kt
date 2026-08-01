@@ -1,9 +1,14 @@
 package com.example.gastofoto.data
 
+import com.example.gastofoto.data.remote.ExchangeApiService
+import com.example.gastofoto.data.remote.ExchangeResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class GastoRepository(private val gastoDao: GastoDao) {
+class GastoRepository(
+    private val gastoDao: GastoDao,
+    private val apiService: ExchangeApiService
+) {
 
     val allGastos: Flow<List<Gasto>> = gastoDao.getAllGastos().map { entities ->
         entities.map { it.toDomain() }
@@ -19,6 +24,10 @@ class GastoRepository(private val gastoDao: GastoDao) {
 
     fun getGastoById(id: Int): Flow<Gasto?> {
         return gastoDao.getGastoById(id).map { it?.toDomain() }
+    }
+
+    suspend fun getExchangeRates(base: String): ExchangeResponse {
+        return apiService.getExchangeRates(base)
     }
 }
 
