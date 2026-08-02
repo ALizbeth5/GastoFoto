@@ -12,7 +12,7 @@ import androidx.compose.runtime.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.gastofoto.data.UserPreferences
+import com.example.gastofoto.data.local.UserPreferences
 import com.example.gastofoto.ui.navigation.Rutas
 import com.example.gastofoto.ui.screens.AjustesScreen
 import com.example.gastofoto.ui.screens.DetalleGastoScreen

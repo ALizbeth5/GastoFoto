@@ -1,4 +1,4 @@
-package com.example.gastofoto.data
+package com.example.gastofoto.data.local
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow

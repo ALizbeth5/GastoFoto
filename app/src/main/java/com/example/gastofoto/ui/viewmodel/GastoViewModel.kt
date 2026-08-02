@@ -3,8 +3,8 @@ package com.example.gastofoto.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.gastofoto.data.Gasto
-import com.example.gastofoto.data.GastoRepository
+import com.example.gastofoto.domain.model.Gasto
+import com.example.gastofoto.data.repository.GastoRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

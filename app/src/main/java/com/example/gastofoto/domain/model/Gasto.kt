@@ -1,5 +1,4 @@
-package com.example.gastofoto.data
-
+package com.example.gastofoto.domain.model
 
 data class Gasto(
     val id: Int = 0,
@@ -9,4 +8,3 @@ data class Gasto(
     val nota: String = "",
     val fotoUri: String? = null
 )
-

@@ -1,4 +1,4 @@
-package com.example.gastofoto.data
+package com.example.gastofoto.data.local
 
 import android.content.Context
 import androidx.room.Database

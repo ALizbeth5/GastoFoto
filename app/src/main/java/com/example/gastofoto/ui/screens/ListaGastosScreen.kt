@@ -14,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.gastofoto.data.Gasto
+import com.example.gastofoto.domain.model.Gasto
 import com.example.gastofoto.ui.viewmodel.ExchangeUiState
 import com.example.gastofoto.ui.viewmodel.GastoViewModel
 import java.util.Locale
