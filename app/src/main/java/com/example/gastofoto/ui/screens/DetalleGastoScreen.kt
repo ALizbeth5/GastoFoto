@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -35,7 +36,10 @@ fun DetalleGastoScreen(
     viewModel: GastoViewModel,
     onVolver: () -> Unit
 ) {
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
     val context = LocalContext.current
+    
     var monto by remember { mutableStateOf("") }
     var categoria by remember { mutableStateOf("") }
     var nota by remember { mutableStateOf("") }
@@ -61,12 +65,15 @@ fun DetalleGastoScreen(
             cameraLauncher.launch(uri)
         } else {
             // Manejo de rechazo de permiso (Requisito e)
-            // Aquí podrías mostrar un Snackbar o un mensaje
+            scope.launch {
+                snackbarHostState.showSnackbar("Permiso de cámara rechazado. No podrás tomar fotos.")
+            }
         }
     }
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text("Nuevo Gasto") }) }
+        topBar = { TopAppBar(title = { Text("Nuevo Gasto") }) },
+        snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { padding ->
         Column(
             modifier = Modifier

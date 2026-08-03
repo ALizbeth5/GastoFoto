@@ -16,6 +16,14 @@
 # debugging stack traces.
 #-keepattributes SourceFile,LineNumberTable
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# Room
+-keepclassmembers class * extends androidx.room.RoomDatabase {
+    public <init>(...);
+}
+
+# Retrofit / Gson
+-keep class com.example.gastofoto.data.remote.** { *; }
+-keep class com.example.gastofoto.domain.model.** { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
+-dontwarn retrofit2.**

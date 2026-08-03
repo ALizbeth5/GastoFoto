@@ -1,8 +1,10 @@
 package com.example.gastofoto.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Settings
@@ -12,8 +14,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import com.example.gastofoto.domain.model.Gasto
 import com.example.gastofoto.ui.viewmodel.ExchangeUiState
 import com.example.gastofoto.ui.viewmodel.GastoViewModel
@@ -103,12 +109,6 @@ fun ResumenGastos(gastos: List<Gasto>, monedaUsuario: String, state: ExchangeUiS
     }
 }
 
-import coil.compose.rememberAsyncImagePainter
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.draw.clip
-
 @Composable
 fun GastoItem(gasto: Gasto, moneda: String, onDelete: () -> Unit) {
     Card(
@@ -139,10 +139,19 @@ fun GastoItem(gasto: Gasto, moneda: String, onDelete: () -> Unit) {
 
                 Column {
                     Text(text = gasto.categoria, style = MaterialTheme.typography.titleMedium)
+                    if (gasto.nota.isNotBlank()) {
+                        Text(
+                            text = gasto.nota,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = Color.Gray,
+                            maxLines = 1
+                        )
+                    }
                     Text(
                         text = "$moneda ${String.format(Locale.US, "%.2f", gasto.monto)}",
                         style = MaterialTheme.typography.bodyLarge,
-                        color = Color.Gray
+                        color = MaterialTheme.colorScheme.primary,
+                        fontWeight = FontWeight.Bold
                     )
                 }
             }

@@ -1,6 +1,5 @@
 package com.example.gastofoto.ui.screens
 
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -55,6 +54,16 @@ fun AjustesScreen(
                         Text(text = opcion, modifier = Modifier.padding(start = 8.dp))
                     }
                 }
+            }
+
+            HorizontalDivider()
+
+            Column {
+                Text("Resumen de la App", style = MaterialTheme.typography.titleMedium)
+                Spacer(modifier = Modifier.height(8.dp))
+                Text("Esta aplicación te permite gestionar tus gastos personales con fotos de tus recibos.", style = MaterialTheme.typography.bodyMedium)
+                Spacer(modifier = Modifier.height(4.dp))
+                Text("Desarrollado para el Proyecto Final de Apps Móviles.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.secondary)
             }
         }
     }
