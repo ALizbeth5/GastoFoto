@@ -103,6 +103,12 @@ fun ResumenGastos(gastos: List<Gasto>, monedaUsuario: String, state: ExchangeUiS
     }
 }
 
+import coil.compose.rememberAsyncImagePainter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
+
 @Composable
 fun GastoItem(gasto: Gasto, moneda: String, onDelete: () -> Unit) {
     Card(
@@ -117,9 +123,28 @@ fun GastoItem(gasto: Gasto, moneda: String, onDelete: () -> Unit) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column {
-                Text(text = gasto.categoria, style = MaterialTheme.typography.titleMedium)
-                Text(text = "$moneda ${gasto.monto}", style = MaterialTheme.typography.bodyLarge, color = Color.Gray)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                // Miniatura de la foto
+                if (gasto.fotoUri != null) {
+                    Image(
+                        painter = rememberAsyncImagePainter(gasto.fotoUri),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(50.dp)
+                            .clip(RoundedCornerShape(8.dp)),
+                        contentScale = ContentScale.Crop
+                    )
+                    Spacer(Modifier.width(16.dp))
+                }
+
+                Column {
+                    Text(text = gasto.categoria, style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        text = "$moneda ${String.format(Locale.US, "%.2f", gasto.monto)}",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = Color.Gray
+                    )
+                }
             }
             IconButton(onClick = onDelete) {
                 Icon(Icons.Default.Delete, contentDescription = "Borrar", tint = Color.Red)
